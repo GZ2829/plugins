@@ -42,15 +42,12 @@ class PostStatisticsPlugin {
   }
 
   function ifWrap($content){
-    if(
-      ( is_main_query() AND is_single() ) AND
+    if(( is_main_query() AND is_single() ) AND
       (
         get_option('psp_wordcount', '1') OR
         get_option('psp_lettercount', '1') OR
-        get_option('psp_readcount', '1')
-      )
-      )
-      {
+        get_option('psp_readtime', '1')
+      )){
         return $this->createContentHTML($content);
       }
 
@@ -59,7 +56,7 @@ class PostStatisticsPlugin {
 
   function sanatizeLocation($input){
       if($input != '0' AND $input != '1'){
-          add_settings_error('psp_location', 'psp_location_error', "Error: Input invalid");
+          add_settings_error('psp_location', 'psp_location_error', "Error: invalid input");
           return get_option('psp_location');
       }
       return $input;
@@ -101,9 +98,31 @@ class PostStatisticsPlugin {
   <?php }
 
   function createContentHTML($content){
-    ?>
-    Hello my lady, hello my darling
-    <?php
+    $html = '<h3>' . get_option('psp_headline', 'Post Statistics') . '</h3><p>';
+
+    if(get_option('psp_wordcount', '1') OR get_option('psp_readtime', '1')){
+        $wordcount = str_word_count(strip_tags($content));
+    }
+
+    if(get_option('psp_wordcount', '1')){
+       $html .= 'This post has ' . $wordcount . ' words.<br>';
+    }
+
+    if(get_option('psp_lettercount', '1')){
+       $html .= 'This post has ' . strlen(strip_tags($content)) . ' characters.<br>';
+    }
+
+    if(get_option('psp_lettercount', '1')){
+       $html .= 'This post will take ' . round($wordcount/225) . (round($wordcount/225) > 1 ? ' minutes to read' : ' minute to read');
+    }
+
+    $html .= '</p>';
+
+
+    if(get_option('psp_location', '0') == '0'){
+      return $html . $content;
+    }
+    return $content . $html;
   }
 
 }
