@@ -8,6 +8,8 @@ Description: It gets da stats
 Author: Me
 Version: 1.0.0
 Author URI: https://ma.tt/
+Text Domain: psp_domain
+Domain Path: /languages
 */
 
 class PostStatisticsPlugin {
@@ -19,7 +21,7 @@ class PostStatisticsPlugin {
   }
 
   function adminMenu(){
-    add_options_page('Post Stats Settings', 'Post Stats', 'manage_options', 'post-stat-settings-page', array($this, 'adminMenuHTML'));
+    add_options_page('Post Stats Settings', __('Post Stats', 'psp_domain'), 'manage_options', 'post-stat-settings-page', array($this, 'adminMenuHTML'));
   }
 
   function settings(){
@@ -31,7 +33,7 @@ class PostStatisticsPlugin {
     add_settings_field('psp_headline', 'Headline Text', array($this, 'headlineHTML'), 'post-stat-settings-page', 'psp_first_section');
     register_setting('postStatsPlugin', 'psp_headline', array('sanitize_callback' => 'sanitize_text_field', 'default' => 'Post Statistics'));
 
-    add_settings_field('psp_wordcount', 'Word Count', array($this, 'checkboxHTML'), 'post-stat-settings-page', 'psp_first_section', array('theName' => 'psp_wordcount'));
+    add_settings_field('psp_wordcount', __('Word Count', 'psp_domain'), array($this, 'checkboxHTML'), 'post-stat-settings-page', 'psp_first_section', array('theName' => 'psp_wordcount'));
     register_setting('postStatsPlugin', 'psp_wordcount', array('sanitize_callback' => 'sanitize_text_field', 'default' => '1'));
 
     add_settings_field('psp_lettercount', 'Letter Count', array($this, 'checkboxHTML'), 'post-stat-settings-page', 'psp_first_section', array('theName' => 'psp_lettercount'));
