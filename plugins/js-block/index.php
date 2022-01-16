@@ -19,7 +19,7 @@ class JsBlockExample {
   }
 
   function adminAssets(){
-    wp_enqueue_script('newblocktype', plugin_dir_url(__FILE__) . 'app.js', array('wp-blocks'));
+    wp_enqueue_script('newblocktype', plugin_dir_url(__FILE__) . 'app.js', array('wp-blocks', 'wp-element'));
   }
 }
 
