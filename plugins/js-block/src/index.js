@@ -24,6 +24,6 @@ registerBlockType("ourplugin/example-custom-block", {
     )
   },
   save: function (props) {
-    return <h1>Today my day is {props.attributes.dayVarb} and my night is {props.attributes.nightVarb}!</h1>
-  }
+    null
+  },
 })

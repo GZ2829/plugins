@@ -129,7 +129,7 @@ registerBlockType("ourplugin/example-custom-block", {
     }));
   },
   save: function (props) {
-    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h1", null, "Today my day is ", props.attributes.dayVarb, " and my night is ", props.attributes.nightVarb, "!");
+    null;
   }
 });
 }();
