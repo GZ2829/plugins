@@ -97,11 +97,39 @@ registerBlockType("ourplugin/example-custom-block", {
   title: 'JS Block Test',
   icon: 'wordpress-alt',
   category: 'common',
-  edit: function () {
-    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h3", null, "Hello from chello mello!!"));
+  attributes: {
+    dayVarb: {
+      type: "string"
+    },
+    nightVarb: {
+      type: "string"
+    }
   },
-  save: function () {
-    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h1", null, "1,2,3");
+  edit: function (props) {
+    function updateDayVerb(e) {
+      props.setAttributes({
+        dayVarb: e.target.value
+      });
+    }
+
+    function updateNightVerb(e) {
+      props.setAttributes({
+        nightVarb: e.target.value
+      });
+    }
+
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
+      placeholder: "day variable",
+      value: props.attributes.dayVarb,
+      onChange: updateDayVerb
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
+      placeholder: "night variable",
+      value: props.attributes.nightVarb,
+      onChange: updateNightVerb
+    }));
+  },
+  save: function (props) {
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h1", null, "Today my day is ", props.attributes.dayVarb, " and my night is ", props.attributes.nightVarb, "!");
   }
 });
 }();

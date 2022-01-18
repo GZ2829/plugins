@@ -4,14 +4,26 @@ registerBlockType("ourplugin/example-custom-block", {
   title: 'JS Block Test',
   icon: 'wordpress-alt',
   category: 'common',
-  edit: function () {
+  attributes:{
+    dayVarb: {type: "string"},
+    nightVarb: {type: "string"},
+  },
+  edit: function (props) {
+    function updateDayVerb(e) {
+      props.setAttributes({dayVarb: e.target.value})
+    }
+
+    function updateNightVerb(e) {
+      props.setAttributes({nightVarb: e.target.value})
+    }
     return (
       <div>
-        <h3>Hello from chello mello!!</h3>
+        <input placeholder="day variable" value={props.attributes.dayVarb} onChange={updateDayVerb}/>
+        <input placeholder="night variable" value={props.attributes.nightVarb} onChange={updateNightVerb}/>
       </div>
     )
   },
-  save: function () {
-    return <h1>1,2,3</h1>
+  save: function (props) {
+    return <h1>Today my day is {props.attributes.dayVarb} and my night is {props.attributes.nightVarb}!</h1>
   }
 })
