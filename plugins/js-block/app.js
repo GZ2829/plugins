@@ -1,11 +1,14 @@
-wp.blocks.registerBlockType("ourplugin/js-block", {
+
+const { registerBlockType } = window.wp.blocks;
+
+registerBlockType("ourplugin/example-custom-block", {
   title: 'JS Block Test',
-  icon: 'smiley',
+  icon: 'wordpress-alt',
   category: 'common',
-  edit: function(){
-    return wp.element.createElement('h3', null 'Hello, this is from the admin screen');
+  edit: function () {
+    return "hello"
   },
-  save: function(){
-    return wp.element.createElement('h3', null 'Hello, this is from the public screen');
+  save: function () {
+    return "Hey"
   }
 })
