@@ -24,11 +24,10 @@ import { useBlockProps } from '@wordpress/block-editor';
  */
 export default function save() {
 	return (
-		<p { ...useBlockProps.save() }>
-			{ __(
-				'Todo List – hello from the saved content!',
-				'todo-list'
-			) }
-		</p>
+		<div
+      { ...useBlockProps.save() }
+      class="defiDonate">
+
+		</div>
 	);
 }
