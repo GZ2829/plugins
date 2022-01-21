@@ -1,3 +1,5 @@
+import './functions.js'
+
 const { registerBlockType } = window.wp.blocks;
 
 registerBlockType("ourplugin/example-custom-block", {

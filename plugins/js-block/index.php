@@ -28,7 +28,10 @@ class JsBlockExample {
 
   function theHTML($attributes) {
     ob_start(); ?>
-      <h3>Today my day is <?php echo esc_html($attributes['dayVarb']) ?> and my night is <?php echo esc_html($attributes['nightVarb']) ?>!?!?!?</h3>
+      <div>
+        <h3>Today my day is <?php echo esc_html($attributes['dayVarb']) ?> and my night is <?php echo esc_html($attributes['nightVarb']) ?>!?!?!?</h3>
+        <button onClick="sayhello()">Hey now, click me</button>
+      </div>
     <?php return ob_get_clean();
   }
 }
